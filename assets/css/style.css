@@ -146,3 +146,30 @@ body {
     margin-bottom: 5px;
     font-size: 0.6rem; /* Un poco más pequeño para que no robe protagonismo al valor */
 }
+
+#map {
+    border: 1px solid var(--neon-blue); /* Usa tu variable de azul neón */
+    filter: invert(100%) hue-rotate(180deg) brightness(0.8);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 95% 100%, 0 100%);
+}
+
+.cyber-map {
+    height: 250px;
+    width: 100%;
+    border: 1px solid var(--neon-blue);
+    /* El secreto del estilo táctico: invertimos colores y rotamos el hue */
+    filter: invert(100%) hue-rotate(180deg) brightness(0.8) contrast(1.2);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 98% 100%, 0 100%);
+}
+.leaflet-container {
+    background: #000 !important;
+}
+
+/* Personalización del marcador neón */
+.cyber-marker {
+    background-color: var(--neon-pink);
+    border: 2px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--neon-pink);
+}

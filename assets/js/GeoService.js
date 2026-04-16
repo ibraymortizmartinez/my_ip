@@ -41,6 +41,7 @@ export class GeoService {
             label: "NATIONAL_IDENTIFIER::SYSTEM_LOG", 
             value: `<img src="${data.location.country_flag}" class="img-fluid border border-info shadow" style="width: 45px; filter: contrast(1.2) brightness(1.1);">` 
         }
+        
     ];
 }
 }
