@@ -58,5 +58,5 @@ Para inicializar la terminal en un entorno local:
 
 ---
 
-**Desarrollado por:** [Tu Nombre / Cristian Oliver Cortez]  
+**Desarrollado por:** [Angel Ibraym Ortiz Martínez]  
 *© 2026 - SISTEMA_DE_MONITOREO_ACTIVO*
