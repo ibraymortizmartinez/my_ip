@@ -3,14 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi IP Pública</title>
+    <title>GeoLocalizador de IP</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Tu Dirección IP Pública es:</h1>
-        <div id="ip-display" class="ip-box">Cargando...</div>
-        <button id="refresh-btn">Actualizar IP</button>
+
+    <div class="card">
+        <header>
+            <img id="flag" src="" alt="Bandera" style="display: none;">
+            <h1>Información de Ubicación</h1>
+        </header>
+        
+        <div id="loader">Consultando satélites...</div>
+
+        <div id="info-container" class="hidden">
+            <div class="data-group">
+                <label>Tu dirección IP:</label>
+                <p id="ip-addr"></p>
+            </div>
+            <div class="data-group">
+                <label>Ciudad:</label>
+                <p id="city-name"></p>
+            </div>
+            <div class="data-group">
+                <label>Continente:</label>
+                <p id="continent-name"></p>
+            </div>
+            <div class="data-group">
+                <label>Organización (ISP):</label>
+                <p id="isp"></p>
+            </div>
+        </div>
+        
+        <button id="btn-reload">Refrescar Ubicación</button>
     </div>
 
     <script src="assets/js/app.js"></script>

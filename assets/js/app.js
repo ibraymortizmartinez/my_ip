@@ -1,39 +1,50 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Obtenemos las referencias a los elementos HTML
-    const ipDisplay = document.getElementById('ip-display');
-    const refreshBtn = document.getElementById('refresh-btn');
+const API_KEY = "088283f4bf3c4ea2a3de75b9fe04fd65";
 
-    // Función asíncrona para consultar la API de IPify
-    const fetchIP = async () => {
-        ipDisplay.textContent = "Cargando...";
+async function obtenerGeolocalizacion() {
+    const loader = document.getElementById('loader');
+    const infoContainer = document.getElementById('info-container');
+    
+    loader.classList.remove('hidden');
+    infoContainer.classList.add('hidden');
+
+    try {
+        // 1. Obtener la IP pública del cliente primero
+        const ipRes = await fetch('https://api.ipify.org?format=json');
+        const ipData = await ipRes.json();
+        const userIp = ipData.ip;
+
+        // 2. Obtener datos de geolocalización usando la IP obtenida
+        const geoRes = await fetch(`https://api.ipgeolocation.io/v3/ipgeo?apiKey=${API_KEY}&ip=${userIp}`);
+        const geoData = await geoRes.json();
+
+        // 3. Mostrar en Consola como solicitaste
+        console.log("--- Datos de Geolocalización ---");
+        console.log("Objeto completo:", geoData);
+        console.log("Ciudad:", geoData.location.city);
+        console.log("Continente:", geoData.location.continent_name);
+        console.log("--------------------------------");
+
+        // 4. Pintar los datos en el HTML
+        document.getElementById('ip-addr').textContent = geoData.ip;
+        document.getElementById('city-name').textContent = geoData.location.city;
+        document.getElementById('continent-name').textContent = geoData.location.continent_name;
+        document.getElementById('isp').textContent = geoData.asn.organization;
         
-        try {
-            // Hacemos la petición a la API pidiendo formato JSON
-            const response = await fetch('https://api.ipify.org?format=json');
-            
-            // Verificamos que la respuesta sea correcta (Status 200)
-            if (!response.ok) {
-                throw new Error('Error en la red al intentar conectar con la API');
-            }
-            
-            // Convertimos la respuesta a un objeto JavaScript
-            const data = await response.json();
-            
-            // Insertamos la propiedad "ip" que nos devuelve la API en nuestro HTML
-            ipDisplay.textContent = data.ip;
-            ipDisplay.style.color = "#ff6b6b"; // Aseguramos el color original
-            
-        } catch (error) {
-            // Si hay un error (ej. sin internet), lo mostramos
-            console.error("Hubo un problema obteniendo la IP:", error);
-            ipDisplay.textContent = "Error al cargar IP";
-            ipDisplay.style.color = "red";
-        }
-    };
+        const flagImg = document.getElementById('flag');
+        flagImg.src = geoData.location.country_flag;
+        flagImg.style.display = 'inline-block';
 
-    // 1. Ejecutamos la función inmediatamente cuando carga la página
-    fetchIP();
+        loader.classList.add('hidden');
+        infoContainer.classList.remove('hidden');
 
-    // 2. Ejecutamos la función también cuando el usuario haga clic en el botón
-    refreshBtn.addEventListener('click', fetchIP);
-});
+    } catch (error) {
+        console.error("Error obteniendo datos:", error);
+        loader.textContent = "Error al cargar los datos.";
+    }
+}
+
+// Eventos
+document.getElementById('btn-reload').addEventListener('click', obtenerGeolocalizacion);
+
+// Carga inicial
+window.onload = obtenerGeolocalizacion;

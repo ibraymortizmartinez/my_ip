@@ -1,7 +1,6 @@
-/* Reseteo básico y fuente */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,49 +9,72 @@ body {
     color: #333;
 }
 
-/* Tarjeta contenedora principal */
-.container {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    width: 350px;
     text-align: center;
-    max-width: 400px;
-    width: 100%;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+#flag {
+    width: 60px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
 }
 
 h1 {
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    color: #555;
+    font-size: 1.2rem;
+    color: #2a5298;
+    margin: 0;
 }
 
-/* Caja donde se muestra la IP */
-.ip-box {
-    font-size: 2rem;
+.data-group {
+    text-align: left;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+label {
+    font-size: 0.8rem;
+    color: #888;
+    display: block;
+}
+
+p {
+    margin: 5px 0;
     font-weight: bold;
-    color: #ff6b6b; /* Un color llamativo similar al de IPify */
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 25px;
-    letter-spacing: 1px;
-    border: 1px solid #eee;
+    font-size: 1.1rem;
+    color: #222;
 }
 
-/* Estilos del botón */
 button {
-    background-color: #ff6b6b;
+    width: 100%;
+    padding: 12px;
+    background: #2a5298;
     color: white;
     border: none;
-    padding: 12px 25px;
-    font-size: 1rem;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s;
     font-weight: bold;
+    transition: 0.3s;
 }
 
 button:hover {
-    background-color: #e55a5a;
+    background: #1e3c72;
+}
+
+.hidden { display: none; }
+
+#loader {
+    margin: 20px 0;
+    font-style: italic;
+    color: #666;
 }
